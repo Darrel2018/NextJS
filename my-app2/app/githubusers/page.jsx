@@ -1,7 +1,11 @@
 import Link from "next/link";
 
 async function fetchGitHubUsers() {
-    const res = await fetch("https://api.github.com/search/users?q=greg");
+    const res = await fetch("https://api.github.com/search/users?q=greg", {
+        next: {
+            revalidate: 60
+        }
+    });
     const json = await res.json();
     return json.items;
 }
